@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="contact_back" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<xacro:macro name="contact_back">
+		<link name="bumper_back_link">
+			<inertial>
+				<origin xyz="0.0 0.0 0.0" rpy="0 1.0 0"/>
+				<mass value="0.0000000001"/>
+				<inertia ixx="0.00000001" ixy="0.00000001" ixz="0.00000001" iyy="0.00000001" iyz="0.00000001" izz="0.00000001"/>
+			</inertial>
+			<visual>
+				<origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0"/>
+				<geometry>
+					<box size="0.04 0.18 0.002" />
+
+
+				</geometry>
+				<material name="red">
+					<color rgba="1.0 0.0 0.0 1.0"/>
+				</material>
+			</visual>
+			<collision name="back_collision">
+				<origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
+				<geometry>
+                    <box size="0.04 0.18 0.002" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="bumper_back_joint" type="fixed">
+			<origin xyz="-0.11 0 0.02" rpy="0.0 0.0 0.0"/>
+			<parent link="base_link"/>
+			<child link="bumper_back_link"/>
+		</joint>
+		
+		<gazebo reference="bumper_back_link">
+			<sensor name="contact_backs" type="contact">
+				<contact>
+				<collision>base_link_fixed_joint_lump__back_collision_collision_1</collision>
+				</contact>
+				<plugin name="gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
+				<always_on>true</always_on>
+				<robotNamespace>/back</robotNamespace>
+				<bumperTopicName>bumper_states</bumperTopicName>
+				<frameName>bumper</frameName>
+				<visualize>true</visualize>
+				<update_rate>50.0</update_rate>        
+				</plugin>
+			</sensor>
+			<material>Gazebo/Red</material>
+			<mu1>0.1</mu1>
+			<mu2>0.1</mu2>
+			<gravity>true</gravity>
+			<selfCollide>false</selfCollide>
+		</gazebo>
+	</xacro:macro>
+</robot>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot name="ares_laser_gazebo" xmlns:xacro="http://wiki.ros.org/xacro">
+    <!-- Included URDF Files -->
+    <xacro:include filename="$(find formation)/urdf/ares_base.xacro" />
+    <xacro:ares_base />
+	<xacro:include filename="$(find formation)/urdf/sensors/laser.xacro" />
+    <xacro:laser />
+    <xacro:include filename="$(find formation)/urdf/sensors/contact_front.xacro" />
+	<xacro:contact_front />
+    <xacro:include filename="$(find formation)/urdf/sensors/contact_back.xacro" />
+	<xacro:contact_back />
+</robot>
+
+
+
+
+<!--
+	<xacro:property name="kinect_offset_x" value="0" />
+    <xacro:property name="kinect_offset_y" value="0" />
+    <xacro:property name="kinect_offset_z" value="0.12" />
+-->
+    <!-- kinect -->
+<!--
+    <joint name="kinect_joint" type="fixed">
+        <origin xyz="${kinect_offset_x} ${kinect_offset_y} ${kinect_offset_z}" rpy="0 0 0" />
+        <parent link="base_link"/>
+        <child link="kinect_link"/>
+    </joint>
+
+    <xacro:kinect_contact prefix="kinect"/>
+-->
+

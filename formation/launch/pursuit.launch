@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>	
+    <include file="$(find twist_mux)/launch/twist_mux.launch"/>
+	<node name="goal" pkg="tracking" type="goal.py"/>
+
+	<node name="path" pkg="tracking" type="path.py"/>
+	
+
+	<!-- <node name="cube" pkg="tracking" type="rvizmaker.py"/> -->
+
+	<!-- <node name="path" pkg="tracking" type="$(find tracking)/src/path.py"/> -->
+
+</launch>

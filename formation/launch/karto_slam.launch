@@ -1,0 +1,17 @@
+<!-- 建图 Karto SLAM -->
+<launch>
+  <arg name="use_sim_time" default="true"/>
+
+  <node pkg="slam_karto" type="slam_karto" name="slam_karto" output="log" respawn="true">
+    <!-- <rosparam command="load" file="$(find formation)/param/mapper_params.yaml" /> -->
+
+    <remap from="scan" to="scan"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_frame" value="map"/>
+    <param name="base_frame" value="base_link"/>
+    <param name = "transform_publish_period" value="0.01"/> 
+    <param name="map_update_interval" value="1"/>
+    <param name="resolution" value="0.025"/>
+  </node>
+
+</launch>

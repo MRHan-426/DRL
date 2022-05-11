@@ -1,0 +1,15 @@
+<!-- 一边建图，一边导航 -->
+
+<launch>
+    <!-- 启动SLAM节点 -->
+    <include file="$(find formation)/launch/karto_slam.launch" />
+    <!-- <include file="$(find formation)/launch/gmapping_slam.launch" /> -->
+    
+    <!-- 运行move_base节点 -->
+    <include file="$(find formation)/launch/move_base.launch" />
+    <node pkg="formation" type="calculate_trajectory.py" name="ares1_calculate_trajectory" output="log">
+	</node>
+    <!-- <include file="$(find tracking)/launch/track.launch" /> -->
+    <!-- 运行rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find formation)/param/rviz.rviz" output="screen"/>
+</launch>
